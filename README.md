@@ -34,7 +34,10 @@ If a developer never checks documentation but AI always highlights it, they will
 ## How Do We Check Code Quality?  
 There are two main ways to check if code is good:  
 
-1. **Using Automated Tools & Tests** – These tools scan the code and provide feedback without human review. They check for:  
+1. **Using Automated Tools & Tests** – -
+**License Compliance** – Every open-source tool/library has a license.  
+  An automated tool will scan the project and check if all licenses are compatible with our company's policies.
+These tools scan the code and provide feedback without human review. They check for:  
    - **Efficiency** – Does the code run fast and use resources wisely?  
    - **Bug-Free** – Are there errors or security issues that need fixing?  
 
