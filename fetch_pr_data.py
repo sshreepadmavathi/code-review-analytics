@@ -11,7 +11,8 @@ load_dotenv()
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
 # 📂 Repository details (change this to your repo)
-REPO_NAME = "sshreepadmavathi/code-review-analytics"
+REPO_NAME = "junit-team/junit5"
+
 
 # 🏗️ Connect to GitHub
 g = Github(GITHUB_TOKEN)
