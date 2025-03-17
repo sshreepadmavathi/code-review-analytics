@@ -1,7 +1,7 @@
 import csv
 import os
 from github import Github
-from datetime import datetime
+from datetime import datetime, timedelta
 from dotenv import load_dotenv  # Import dotenv
 
 # 🔄 Load environment variables from .env file
@@ -13,13 +13,15 @@ GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 # 📂 Repository details (change this to your repo)
 REPO_NAME = "junit-team/junit5"
 
-
 # 🏗️ Connect to GitHub
 g = Github(GITHUB_TOKEN)
 repo = g.get_repo(REPO_NAME)
 
-# 📌 Fetch all merged pull requests
-pulls = repo.get_pulls(state="closed")
+# 📆 Get the date 3 months ago
+three_months_ago = datetime.now() - timedelta(days=90)
+
+# 📌 Fetch all merged pull requests from the last 3 months
+pulls = [pr for pr in repo.get_pulls(state="closed") if pr.created_at >= three_months_ago]
 
 # 📄 CSV file name (Overwrites Existing File)
 csv_filename = "pull_requests.csv"
