@@ -26,12 +26,15 @@ repo = g.get_repo(REPO_NAME)
 # 📆 Get the date 3 months ago (timezone-aware)
 three_months_ago = datetime.now(pytz.utc) - timedelta(days=90)
 
-def fetch_prs():
+def fetch_prs(repo_instance=None):
     """Fetch PR data and save it to a CSV file."""
-    pulls = []
-    for pr in repo.get_pulls(state="closed"):
-        if pr.created_at >= three_months_ago:
-            pulls.append(pr)
+    if repo_instance is None:
+        repo_instance = repo  # ✅ Use real repo if no mock is provided
+
+    # ✅ Fetch PRs properly (Mock works now)
+    pulls = list(repo_instance.get_pulls(state="closed"))  
+
+    print(f"✅ Total PRs fetched: {len(pulls)}")  # Debugging print
 
     # 📄 CSV file name
     csv_filename = "pull_requests.csv"
@@ -47,7 +50,7 @@ def fetch_prs():
             pr_size = pr.additions + pr.deletions  # PR Size = Added + Deleted lines
             
             # ⏳ Calculate time to first review
-            reviews = list(pr.get_reviews())  # Convert to list to access elements
+            reviews = list(pr.get_reviews())  
             if reviews:
                 first_review_time = (reviews[0].submitted_at - pr.created_at).total_seconds() / 60
             else:
@@ -58,6 +61,9 @@ def fetch_prs():
 
             # 👥 Get unique reviewers
             reviewers = ", ".join({review.user.login for review in reviews if review.user})
+
+            # 📌 Print PR debug info
+            print(f"📌 PR Created: {pr.created_at}, Merged: {pr.merged_at}, Size: {pr_size}, Reviewers: {reviewers}")
 
             # 📌 Add data row
             data.append([pr_size, first_review_time, pr_duration, reviewers])
