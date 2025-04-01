@@ -31,4 +31,3 @@ jobs:
         with:
           name: pull_requests_csv
           path: pull_requests.csv
-
