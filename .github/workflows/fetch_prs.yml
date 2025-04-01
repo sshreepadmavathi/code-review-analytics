@@ -27,8 +27,7 @@ jobs:
         run: python fetch_pr_data.py
 
       - name: Upload CSV as an artifact
-    uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2  # 👈 Corrected indentation
         with:
           name: pull_requests_csv
           path: pull_requests.csv
-
