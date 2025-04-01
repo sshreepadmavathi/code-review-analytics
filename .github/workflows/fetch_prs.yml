@@ -4,8 +4,8 @@ on:
   workflow_dispatch: # Allows manual triggering
 
 jobs:
-  fetch-prs:
-    runs-on: ubuntu-latest
+  fetch-prs:  # ✅ Indentation fixed
+    runs-on: ubuntu-latest  # ✅ Correctly indented
 
     steps:
       - name: Checkout Repository
@@ -25,9 +25,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python fetch_pr_data.py
-    - name: Upload CSV as an artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: pull_requests_csv
-        path: pull_requests.csv
+
+      - name: Upload CSV as an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pull_requests_csv
+          path: pull_requests.csv
 
