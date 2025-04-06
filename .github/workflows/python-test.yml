@@ -5,9 +5,10 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
     - name: 📥 Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: 🐍 Set up Python
       uses: actions/setup-python@v4
@@ -20,6 +21,7 @@ jobs:
 
     - name: ▶️ Run fetch_pr_data.py
       run: |
+        echo "🚀 Running the PR fetch script!"
         python fetch_pr_data.py
 
     - name: 📤 Upload CSV as artifact
