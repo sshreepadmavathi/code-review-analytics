@@ -25,7 +25,7 @@ jobs:
         python fetch_pr_data.py
 
     - name: 📤 Upload CSV as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: pr-data
         path: pull_requests.csv
