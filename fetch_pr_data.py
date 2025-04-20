@@ -1,10 +1,11 @@
+import sys
 import csv
 import pytz
-import sys
 from datetime import datetime, timedelta
 from github import Github
 
 def fetch_prs(repo):
+    """Fetch PR data from a given repository and save it to a CSV file."""
     pulls = []
     three_months_ago = datetime.now(pytz.utc) - timedelta(days=90)
 
@@ -31,7 +32,7 @@ def fetch_prs(repo):
             pr_duration = (pr.merged_at - pr.created_at).total_seconds() / 60
             reviewers = ", ".join({review.user.login for review in reviews if review.user})
 
-            print(f"📌 PR: {pr.title}, Size: {pr_size}, Reviewers: {reviewers}")
+            print(f"📌 PR Created: {pr.created_at}, Merged: {pr.merged_at}, Size: {pr_size}, Reviewers: {reviewers}")
             data.append([pr_size, first_review_time, pr_duration, reviewers])
 
     try:
@@ -43,16 +44,16 @@ def fetch_prs(repo):
     except PermissionError:
         print("❌ Permission denied! Close the CSV file if it's open and try again.")
 
-# ✅ Main block to make the script executable
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python fetch_pr_data.py <github_token> <org/repo>")
+        print("Usage: python fetch_pr_data.py <github_token> <owner/repo>")
         sys.exit(1)
 
     token = sys.argv[1]
     repo_name = sys.argv[2]
 
     g = Github(token)
+
     try:
         repo = g.get_repo(repo_name)
         fetch_prs(repo)
