@@ -1,0 +1,25 @@
+name: Run Fetch PR Data
+
+on:
+  push:
+    branches:
+      - main  # Change if you're using a different branch name
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install pytz PyGithub
+
+      - name: Run fetch_pr_data.py
+        run: python fetch_pr_data.py ${{ secrets.GITHUB_TOKEN }} shreepadmavathi/code-review-analytics
