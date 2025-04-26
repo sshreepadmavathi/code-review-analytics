@@ -1,61 +1,57 @@
 import sys
+import requests
 import csv
-import pytz
-from datetime import datetime, timedelta
-from github import Github
 
-def fetch_prs(repo):
-    """Fetch PR data from a given repository and save it to a CSV file."""
-    pulls = []
-    three_months_ago = datetime.now(pytz.utc) - timedelta(days=90)
+def fetch_prs(token, repo_name):
+    headers = {
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github.v3+json"
+    }
+    prs = []
+    page = 1
 
-    print("🔄 Fetching closed PRs...")
-    for pr in repo.get_pulls(state="closed"):
-        if pr.created_at >= three_months_ago:
-            pulls.append(pr)
+    while True:
+        url = f"https://api.github.com/repos/{repo_name}/pulls?state=closed&per_page=100&page={page}"
+        response = requests.get(url, headers=headers)
 
-    print(f"✅ Total PRs fetched: {len(pulls)}")
+        if response.status_code != 200:
+            print(f"❌ Error accessing repo: {response.status_code} {response.text}")
+            return []
 
-    csv_filename = "pull_requests.csv"
-    headers = ["Pull Request Size", "Time to First Review (mins)", "Pull Request Duration (mins)", "Reviewers"]
-    data = []
+        data = response.json()
+        if not data:
+            break
 
-    for pr in pulls:
-        if pr.merged_at:
-            pr_size = pr.additions + pr.deletions
-            reviews = list(pr.get_reviews())
+        prs.extend(data)
+        page += 1
 
-            first_review_time = None
-            if reviews:
-                first_review_time = (reviews[0].submitted_at - pr.created_at).total_seconds() / 60
+    return prs
 
-            pr_duration = (pr.merged_at - pr.created_at).total_seconds() / 60
-            reviewers = ", ".join({review.user.login for review in reviews if review.user})
+def save_to_csv(prs):
+    with open('pull_requests.csv', 'w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerow(["PR Title", "Additions", "Reviewers"])
 
-            print(f"📌 PR Created: {pr.created_at}, Merged: {pr.merged_at}, Size: {pr_size}, Reviewers: {reviewers}")
-            data.append([pr_size, first_review_time, pr_duration, reviewers])
-
-    try:
-        with open(csv_filename, mode="w", newline="") as file:
-            writer = csv.writer(file)
-            writer.writerow(headers)
-            writer.writerows(data)
-        print(f"✅ CSV file '{csv_filename}' created successfully!")
-    except PermissionError:
-        print("❌ Permission denied! Close the CSV file if it's open and try again.")
+        for pr in prs:
+            title = pr.get('title', 'N/A')
+            additions = pr.get('additions', 0)
+            reviewers = [reviewer['login'] for reviewer in pr.get('requested_reviewers', [])]
+            writer.writerow([title, additions, ", ".join(reviewers)])
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python fetch_pr_data.py <github_token> <owner/repo>")
+    if len(sys.argv) < 3:
+        print("❌ Usage: python fetch_pr_data.py <GitHub_Token> <Repo_Name>")
         sys.exit(1)
 
     token = sys.argv[1]
     repo_name = sys.argv[2]
 
-    g = Github(token)
+    print(f"🔵 Fetching PRs for repo: {repo_name}...")
+    prs = fetch_prs(token, repo_name)
 
-    try:
-        repo = g.get_repo(repo_name)
-        fetch_prs(repo)
-    except Exception as e:
-        print(f"❌ Error accessing repo: {e}")
+    if prs:
+        print(f"🟢 Total PRs fetched: {len(prs)}")
+        save_to_csv(prs)
+        print(f"✅ CSV file 'pull_requests.csv' created successfully!")
+    else:
+        print("⚠️ No PRs found or there was an error.")
