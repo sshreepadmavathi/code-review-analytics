@@ -3,7 +3,7 @@ name: Run Fetch PR Data
 on:
   push:
     branches:
-      - main  # Change if you're using a different branch name
+      - main
 
 jobs:
   run-script:
@@ -19,7 +19,7 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install requests pytz PyGithub
+        run: pip install pytz PyGithub requests
 
       - name: Run fetch_pr_data.py
         run: python fetch_pr_data.py ${{ secrets.GITHUB_TOKEN }} shreepadmavathi/code-review-analytics
