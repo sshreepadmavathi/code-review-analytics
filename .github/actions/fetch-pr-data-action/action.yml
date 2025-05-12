@@ -1,0 +1,27 @@
+name: "Fetch PR Data Action"
+description: "Fetches PRs using GitHub API and uploads CSV"
+inputs:
+  github_token:
+    description: "GitHub Token"
+    required: true
+  repo:
+    description: "Repository name like owner/repo"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
+    - name: Install dependencies
+      run: |
+        pip install requests
+      shell: bash
+
+    - name: Run fetch_pr_data.py
+      run: |
+        python ${{ github.action_path }}/fetch_pr_data.py ${{ inputs.github_token }} ${{ inputs.repo }}
+      shell: bash
