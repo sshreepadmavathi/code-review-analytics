@@ -65,7 +65,7 @@ code-review-analytics/
 
 ##  Get Started
 
-### 1️⃣ Clone This Repo
+ 1️⃣ Clone This Repo
 ```bash
 git clone https://github.com/YOUR_USERNAME/code-review-analytics.git
 cd code-review-analytics
