@@ -29,7 +29,8 @@ Code reviews are crucial yet often opaque. How long do reviews take? Do bigger P
 
 ## 📂 Repo Structure
 code-review-analytics/
-│ ├── .github/ # GitHub Actions workflow
+│ 
+├── .github/ # GitHub Actions workflow
 ├── images/ # 📷 Generated visualizations 
 │ ├── github_actions.png 
 │ ├── pr_review_distribution.png
