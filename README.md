@@ -28,7 +28,22 @@ Code reviews are crucial yet often opaque. How long do reviews take? Do bigger P
 ---
 
 ## 📂 Repo Structure
-code-review-analytics/ │ ├── .github/ # GitHub Actions workflow ├── images/ # 📷 Generated visualizations │ ├── github_actions.png │ ├── pr_review_distribution.png │ ├── pr_size_vs_review_time.png │ ├── pull_request_data.png ├── analyze_pr_data.py # Data analysis + plot generation ├── generate_pr_data.py # GitHub API integration script ├── pr_analysis.py # Statistical evaluation logic ├── test_fetch_pr_data.py # ✅ Unit tests for API fetch logic ├── pull_requests.csv # Collected PR dataset ├── README.md # 🧾 Project documentation
+code-review-analytics/
+│
+├── .github/ # GitHub Actions workflow
+│
+├── images/ # 📷 Generated visualizations
+│ ├── github_actions.png
+│ ├── pr_review_distribution.png
+│ ├── pr_size_vs_review_time.png
+│ └── pull_request_data.png
+│
+├── analyze_pr_data.py # Data analysis + plot generation
+├── generate_pr_data.py # GitHub API integration script
+├── pr_analysis.py # Statistical evaluation logic
+├── test_fetch_pr_data.py # ✅ Unit tests for API fetch logic
+├── pull_requests.csv # Collected PR dataset
+└── README.md # 🧾 Project documentation
 
 
 ---
