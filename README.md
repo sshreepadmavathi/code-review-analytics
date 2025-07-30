@@ -1,63 +1,93 @@
-# Code Review Analytics  
+# 📊 Code Review Analytics
 
-## What I Understood from the Problem  
-Code reviews help keep software clean and efficient. However, humans review code differently—some focus on readability, others on security, and some rush through without much attention. This inconsistency can lead to issues.  
+Analyze **GitHub Pull Request (PR) review patterns** to unlock insights about efficiency, response time, and PR complexity. This project transforms raw data into compelling visualizations to empower teams to streamline code reviews.
 
-### Example  
-A startup company needs to submit a solution before a deadline. Developer **Ram** submits the solution for review, while another developer **Shyam** does not optimize the code and quickly submits it without proper checks. As a result, many bugs are later found in the code, causing delays and frustration.  
+---
 
-Here, we could use an **AI tool** that tracks code quality, highlights rushed approvals, and provides detailed feedback to avoid such issues.  
+## 🚀 Why It Matters
 
-## Who Will Use These Tools?  
-1. **Developers** – To understand how good their code quality is.  
-2. **Managers** – To track how well reviews are being conducted.  
-3. **Testers** – To ensure that the reviewed code meets quality standards before release.  
+Code reviews are crucial yet often opaque. How long do reviews take? Do bigger PRs stall the process? This project answers these questions using real GitHub data.
 
-## How Will They Use It?  
-1. A tool that checks:  
-   - Code quality, readability  
-   - How long the review takes for one code  
-2. An **AI-powered review tool** that provides:  
-   - Feedback on the code  
-   - Code optimization suggestions  
+🔍 What you’ll discover:
 
-## What Benefits Do Users Get?  
-1. **Optimized Resource Utilization** – By ensuring proper code reviews, teams spend less time fixing mistakes and can focus on new features.  
-2. **Developers** – Receive AI feedback to improve their review and coding skills.  
-3. **Managers** – Can set benchmarks for review quality.  
-4. **Customer Satisfaction** – Higher code quality results in fewer bugs and a better user experience.  
-5. **Cost Reduction** – A well-reviewed code that works the first time reduces rework, saving time and development costs.  
+- 📈 Review time trends and PR size correlations  
+- ⏱️ Time-to-first-review analytics  
+- 👥 Reviewer workload and distribution  
+- 📦 PR size impact on review delay  
+- ✅ Reproducible unit-tested scripts for reliable evaluation  
 
-### Example  
-If a developer never checks documentation but AI always highlights it, they will start paying more attention and improve their review habits.  
+---
 
-## How Do We Check Code Quality?  
-There are two main ways to check if code is good:  
+## 🧠 Highlights & Insights
 
-1. **Using Automated Tools & Tests** – 
-***License Compliance*** – Every open-source tool/library has a license.  
-  An automated tool will scan the project and check if all licenses are compatible with our company's policies.
-These tools scan the code and provide feedback without human review. They check for:  
-   - **Efficiency** – Does the code run fast and use resources wisely?  
-   - **Bug-Free** – Are there errors or security issues that need fixing?  
+- 🚨 Larger PRs take noticeably longer to review  
+- ⚡ Review times fluctuate wildly — some in minutes, others in days  
+- 👀 Some PRs are never reviewed  
+- 🔄 Number of reviewers doesn’t always mean faster review  
 
-2. **Human Code Reviews** – Some aspects require manual review. AI can assist by pointing out potential improvements. Human reviewers focus on:  
-   - **Readability** – Is the code clear and easy to understand?  
-   - **Maintainability** – Will it be easy to update or modify in the future?  
+---
 
-## How AI Can Help with Code Reviews  
-Since automated tools can’t catch everything, **AI can assist human reviewers** by:  
-1. Suggesting ways to improve code readability.  
-2. Highlighting often-missed issues, such as unclear logic or missing documentation.  
-3. Ensuring consistency and adherence to best practices.  
+## 📂 Repo Structure
+code-review-analytics/
+│ ├── .github/ # GitHub Actions workflow
+├── images/ # 📷 Generated visualizations 
+│ ├── github_actions.png 
+│ ├── pr_review_distribution.png
+│ ├── pr_size_vs_review_time.png 
+│ ├── pull_request_data.png 
+│ ├── analyze_pr_data.py # Data analysis + plot generation
+├── generate_pr_data.py # GitHub API integration script 
+├── pr_analysis.py # Statistical evaluation logic 
+├── test_fetch_pr_data.py # ✅ Unit tests for API fetch logic 
+├── pull_requests.csv # Collected PR dataset
+├── README.md # 🧾 Project documentation
 
-### Example  
-A developer who forgets to add comments in the code will start paying more attention if AI consistently flags it.  
 
-## Actions Taken by Users  
-1. Use AI to analyze code reviews.  
-2. Developers will create new tools for missing review metrics.  
-3. Developers will use AI to optimize code, reducing overall costs.  
+---
 
-  
+## 📸 Sample Visuals
+
+### PR Review Time Distribution  
+![Review Time Distribution](images/pr_review_distribution.png)
+
+### PR Size vs Review Time  
+![PR Size vs Time](images/pr_size_vs_review_time.png)
+
+### Pull Request Summary  
+![PR Summary](images/pull_request_data.png)
+
+---
+
+## ⚙️ Get Started
+
+### 1️⃣ Clone This Repo
+```bash
+git clone https://github.com/YOUR_USERNAME/code-review-analytics.git
+cd code-review-analytics
+2️⃣ Install Dependencies
+(Optional step if using requirements.txt)
+pip install -r requirements.txt
+3️⃣ Fetch GitHub PR Data
+Edit the following in generate_pr_data.py:
+TOKEN = "your_github_token"
+REPO = "user/repo"  # Example: "octocat/Hello-World"
+Run the script:
+python generate_pr_data.py
+4️⃣ Run Analysis & Generate Plots
+python analyze_pr_data.py
+✅ Unit Tests
+The test suite covers GitHub API behavior, ensuring robust data capture.
+
+🛡️ Validates response formatting
+
+🔄 Checks pagination handling
+
+⚠️ Handles edge cases like PRs with zero reviews
+
+To run tests:
+pytest test_fetch_pr_data.py
+
+
+
+
 
