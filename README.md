@@ -27,7 +27,7 @@ Code reviews are crucial yet often opaque. How long do reviews take? Do bigger P
 
 ---
 
-<details> <summary>📂 Repo Structure</summary>
+## 📂 Repo Structure
   
 code-review-analytics/
 │
