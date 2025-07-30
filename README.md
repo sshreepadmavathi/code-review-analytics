@@ -64,9 +64,8 @@ code-review-analytics/
 ---
 
 ##  Get Started
-
- 1️⃣ Clone This Repo
 ```bash
+ 1️⃣ Clone This Repo
 git clone https://github.com/YOUR_USERNAME/code-review-analytics.git
 cd code-review-analytics
 2️⃣ Install Dependencies
