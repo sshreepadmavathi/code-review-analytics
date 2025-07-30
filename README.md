@@ -28,7 +28,8 @@ Code reviews are crucial yet often opaque. How long do reviews take? Do bigger P
 ---
 
 ## 📂 Repo Structure
-  
+
+```
 code-review-analytics/
 │
 ├── .github/                      # GitHub Actions workflow
@@ -45,6 +46,7 @@ code-review-analytics/
 ├── test_fetch_pr_data.py        # ✅ Unit tests for API fetch logic
 ├── pull_requests.csv            # Collected PR dataset
 └── README.md                    # 🧾 Project documentation
+```
 
 ---
 
