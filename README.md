@@ -4,26 +4,26 @@ Analyze **GitHub Pull Request (PR) review patterns** to unlock insights about ef
 
 ---
 
-## 🚀 Why It Matters
+##  Why It Matters
 
 Code reviews are crucial yet often opaque. How long do reviews take? Do bigger PRs stall the process? This project answers these questions using real GitHub data.
 
-🔍 What you’ll discover:
+ What you’ll discover:
 
-- 📈 Review time trends and PR size correlations  
-- ⏱️ Time-to-first-review analytics  
-- 👥 Reviewer workload and distribution  
-- 📦 PR size impact on review delay  
-- ✅ Reproducible unit-tested scripts for reliable evaluation  
+-  Review time trends and PR size correlations  
+-  Time-to-first-review analytics  
+-  Reviewer workload and distribution  
+-  PR size impact on review delay  
+-  Reproducible unit-tested scripts for reliable evaluation  
 
 ---
 
-## 🧠 Highlights & Insights
+##  Highlights & Insights
 
-- 🚨 Larger PRs take noticeably longer to review  
-- ⚡ Review times fluctuate wildly — some in minutes, others in days  
-- 👀 Some PRs are never reviewed  
-- 🔄 Number of reviewers doesn’t always mean faster review  
+-  Larger PRs take noticeably longer to review  
+-  Review times fluctuate wildly — some in minutes, others in days  
+-  Some PRs are never reviewed  
+-  Number of reviewers doesn’t always mean faster review  
 
 ---
 
@@ -34,7 +34,7 @@ code-review-analytics/
 │
 ├── .github/                      # GitHub Actions workflow
 │
-├── images/                       # 📷 Generated visualizations
+├── images/                       #  Generated visualizations
 │   ├── github_actions.png
 │   ├── pr_review_distribution.png
 │   ├── pr_size_vs_review_time.png
@@ -45,12 +45,12 @@ code-review-analytics/
 ├── pr_analysis.py               # Statistical evaluation logic
 ├── test_fetch_pr_data.py        # ✅ Unit tests for API fetch logic
 ├── pull_requests.csv            # Collected PR dataset
-└── README.md                    # 🧾 Project documentation
+└── README.md                    #  Project documentation
 ```
 
 ---
 
-## 📸 Sample Visuals
+##  Sample Visuals
 
 ### PR Review Time Distribution  
 ![Review Time Distribution](images/pr_review_distribution.png)
@@ -63,7 +63,7 @@ code-review-analytics/
 
 ---
 
-## ⚙️ Get Started
+##  Get Started
 
 ### 1️⃣ Clone This Repo
 ```bash
@@ -85,11 +85,11 @@ python analyze_pr_data.py
 ✅ Unit Tests
 The test suite covers GitHub API behavior, ensuring robust data capture.
 
-🛡️ Validates response formatting
+ Validates response formatting
 
-🔄 Checks pagination handling
+ Checks pagination handling
 
-⚠️ Handles edge cases like PRs with zero reviews
+ Handles edge cases like PRs with zero reviews
 
 To run tests:
 pytest test_fetch_pr_data.py
