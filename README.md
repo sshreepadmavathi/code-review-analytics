@@ -90,6 +90,30 @@ The test suite covers GitHub API behavior, ensuring robust data capture.
 
  Handles edge cases like PRs with zero reviews
 
+##  Reusable GitHub Actions
+
+This repo includes a **modular and reusable GitHub Action** that can be triggered manually or reused across multiple workflows. It supports:
+
+-  Fetching pull request metadata
+-  Standardizing data formatting
+-  Preparing data for analytics
+
+Example:  
+```yaml
+name: Test Reusable Action
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-analysis:
+    uses: ./.github/workflows/action.yml
+    with:
+      some-input: value
+
+
+
+
 To run tests:
 pytest test_fetch_pr_data.py
 
