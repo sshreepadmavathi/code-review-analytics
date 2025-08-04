@@ -28,7 +28,7 @@ What you’ll discover:
 ---
 
 ## 📂 Repo Structure
-'''
+```
 code-review-analytics/
 │
 ├── .github/ # GitHub Actions workflow
@@ -46,7 +46,7 @@ code-review-analytics/
 ├── test_fetch_pr_data.py # ✅ Unit tests for PR fetching
 ├── pull_requests.csv # Collected PR dataset
 └── README.md # Project documentation
-'''
+```
 
 ---
 
@@ -105,5 +105,4 @@ python generate_pr_data.py
 python analyze_pr_data.py
 python pr_analysis.py
 
-License
-This project is licensed.
+
