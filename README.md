@@ -80,7 +80,7 @@ Run tests using:
 ```bash
 python -m unittest test_fetch_pr_data.py
 This workflow generates the CSV artifact and runs lint checks automatically on push or manual dispatch.
-
+```
 📈 Example Insights
 Some PRs took over 14,000+ minutes for review
 
@@ -91,6 +91,7 @@ Larger PRs → longer review duration (strong correlation)
 Helpful for identifying review bottlenecks or overloaded reviewers
 
 🛠️ Getting Started
+```bash
 # 1️⃣ Clone the repo
 git clone https://github.com/sshreepadmavathi/code-review-analytics.git
 cd code-review-analytics
@@ -104,5 +105,5 @@ python generate_pr_data.py
 # 4️⃣ Run analysis
 python analyze_pr_data.py
 python pr_analysis.py
-
+```
 
