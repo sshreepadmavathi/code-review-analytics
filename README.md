@@ -75,7 +75,7 @@ cd code-review-analytics
 pip install -r requirements.txt
 
 # 3️⃣ Fetch GitHub PR Data
-# Edit inside generate_pr_data.py:
+# inside generate_pr_data.py:
 # TOKEN = "your_github_token"
 # REPO = "user/repo"  # Example: "octocat/Hello-World"
 python generate_pr_data.py
