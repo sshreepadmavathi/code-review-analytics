@@ -4,11 +4,12 @@ Analyze **GitHub Pull Request (PR) review patterns** to unlock insights about ef
 
 ---
 
-## 💡 Why It Matters
+## 🚀 Why It Matters
 
 Code reviews are crucial yet often opaque. How long do reviews take? Do bigger PRs stall the process? This project answers these questions using real GitHub data.
 
 What you’ll discover:
+
 - Review time trends and PR size correlations  
 - Time-to-first-review analytics  
 - Reviewer workload and distribution  
@@ -17,7 +18,7 @@ What you’ll discover:
 
 ---
 
-## 📌 Highlights & Insights
+## ✨ Highlights & Insights
 
 - Larger PRs take noticeably longer to review  
 - Review times fluctuate wildly — some in minutes, others in days  
@@ -27,27 +28,25 @@ What you’ll discover:
 ---
 
 ## 📂 Repo Structure
-
-```
+'''
 code-review-analytics/
 │
-├── .github/                      # GitHub Actions workflow
+├── .github/ # GitHub Actions workflow
+│ ├── use-reusable-action.yml # ✅ Reusable GitHub Action
 │
-├── images/                       # 📷 Generated visualizations
-│   ├── github_actions.png
-│   ├── pr_review_distribution.png
-│   ├── pr_size_vs_review_time.png
-│   └── pull_request_data.png
+├── images/ # 📊 Generated visualizations
+│ ├── github_actions.png
+│ ├── pr_review_distribution.png
+│ ├── pr_size_vs_review_time.png
+│ └── pull_request_data.png
 │
-├── analyze_pr_data.py           # Data analysis + plot generation
-├── generate_pr_data.py          # GitHub API integration script
-├── pr_analysis.py               # Statistical evaluation logic
-├── test_fetch_pr_data.py        # ✅ Unit tests for API fetch logic
-├── pull_requests.csv            # Collected PR dataset
-└── README.md                    # 🧾 Project documentation
-```
-
-
+├── analyze_pr_data.py # Data analysis + plot generation
+├── generate_pr_data.py # GitHub API simulation script
+├── pr_analysis.py # Statistical evaluation logic
+├── test_fetch_pr_data.py # ✅ Unit tests for PR fetching
+├── pull_requests.csv # Collected PR dataset
+└── README.md # Project documentation
+'''
 
 ---
 
@@ -59,64 +58,52 @@ code-review-analytics/
 ### PR Size vs Review Time  
 ![PR Size vs Time](images/pr_size_vs_review_time.png)
 
-### Pull Request Summary  
-![PR Summary](images/pull_request_data.png)
+### GitHub Actions Success  
+![Actions](images/github_actions.png)
+
+### PR Dataset Snapshot  
+![PR Data](images/pull_request_data.png)
 
 ---
 
-## ⚙️ Get Started
+## 🧪 Unit Tests
+
+This repo includes unit tests using `unittest`, with mocked PR objects to validate functionality without hitting GitHub’s live API. It covers:
+
+- Response structure
+- Pagination handling
+- Review submission extraction
+- Edge case handling (e.g., 0 reviewers)
+
+Run tests using:
 
 ```bash
-# 1️⃣ Clone This Repo
-git clone https://github.com/sshreepadmavathi/code-review-analytics.git
-cd code-review-analytics
-
-# 2️⃣ Install Dependencies (Optional)
-pip install -r requirements.txt
-
-# 3️⃣ Fetch GitHub PR Data
-# inside generate_pr_data.py:
-# TOKEN = "your_github_token"
-# REPO = "user/repo"  # Example: "octocat/Hello-World"
-python generate_pr_data.py
-
-# 4️⃣ Run Analysis & Generate Plots
-python analyze_pr_data.py
-
-✅ Unit Tests
-This repo includes unit tests for validating GitHub API interactions and dataset quality:
-
-Validates response formatting
-
-Checks pagination handling
-
-Handles edge cases like PRs with zero reviews
-
-🔁 Reusable GitHub Action
-This repo defines and uses a reusable GitHub Action for PR analysis.
-
-🧩 Workflow File
-test-reusable-action.yml
-on:
-  workflow_dispatch:
-
-jobs:
-  test-repo-prs:
-    uses: ./.github/workflows/action.yml
-    with:
-      some-input: value
-You can manually trigger this from the Actions tab.
-It runs the job test-repo-prs, which executes your PR analysis logic using modular Python scripts.
+python -m unittest test_fetch_pr_data.py
+This workflow generates the CSV artifact and runs lint checks automatically on push or manual dispatch.
 
 📈 Example Insights
-Some PRs took 14,000+ minutes to be reviewed
+Some PRs took over 14,000+ minutes for review
 
 A few PRs were merged in under 10 minutes
 
-Larger PRs often corresponded with longer review durations
+Larger PRs → longer review duration (strong correlation)
 
-These metrics can inform review process changes.
+Helpful for identifying review bottlenecks or overloaded reviewers
 
----
+🛠️ Getting Started
+# 1️⃣ Clone the repo
+git clone https://github.com/sshreepadmavathi/code-review-analytics.git
+cd code-review-analytics
 
-📄 This project is licensed under the [MIT License](LICENSE).
+# 2️⃣ (Optional) Install dependencies
+pip install -r requirements.txt
+
+# 3️⃣ Generate PR data (example dummy data)
+python generate_pr_data.py
+
+# 4️⃣ Run analysis
+python analyze_pr_data.py
+python pr_analysis.py
+
+License
+This project is licensed.
