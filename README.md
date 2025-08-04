@@ -112,7 +112,7 @@ It runs the job test-repo-prs, which executes your PR analysis logic using modul
 
 
 
- Example Insights
+ ##Example Insights
 Some PRs took 14,000+ minutes to be reviewed
 
 A few PRs were merged in under 10 minutes
