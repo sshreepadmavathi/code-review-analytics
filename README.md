@@ -96,7 +96,7 @@ Handles edge cases like PRs with zero reviews
 This repo defines and uses a reusable GitHub Action for PR analysis.
 
 🧩 Workflow File
-use-reusable-action.yml
+test reusable-action.yml
 on:
   workflow_dispatch:
 
