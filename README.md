@@ -90,32 +90,36 @@ The test suite covers GitHub API behavior, ensuring robust data capture.
 
  Handles edge cases like PRs with zero reviews
 
-##  Reusable GitHub Actions
+##  Reusable GitHub Action
 
-This repo includes a **modular and reusable GitHub Action** that can be triggered manually or reused across multiple workflows. It supports:
+This repo defines and uses a **reusable GitHub Action** for PR analysis.
 
--  Fetching pull request metadata
--  Standardizing data formatting
--  Preparing data for analytics
+### Workflow File  
+[`use-reusable-action.yml`](.github/workflows/use-reusable-action.yml)
 
-Example:  
 ```yaml
-name: Test Reusable Action
-
 on:
   workflow_dispatch:
 
 jobs:
-  run-analysis:
+  test-repo-prs:
+    uses: ./.github/workflows/action.yml
+You can manually trigger this from the Actions tab.
+It runs the job test-repo-prs, which executes your PR analysis logic using modular Python scripts.
     uses: ./.github/workflows/action.yml
     with:
       some-input: value
 
 
 
+ Example Insights
+Some PRs took 14,000+ minutes to be reviewed
 
-To run tests:
-pytest test_fetch_pr_data.py
+A few PRs were merged in under 10 minutes
+
+Larger PRs often corresponded with longer review durations
+
+These metrics can inform review process changes.
 
 
 
